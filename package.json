@@ -1,0 +1,23 @@
+{
+  "name": "ethereum-class-hw2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "deploy.js",
+  "dependencies": {
+    "web3": "^1.0.0-beta.36"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/T-rain/Ethereum-Class-HW2.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/T-rain/Ethereum-Class-HW2/issues"
+  },
+  "homepage": "https://github.com/T-rain/Ethereum-Class-HW2#readme"
+}
