@@ -72,12 +72,11 @@ contract Bank {
 
         // 增加 msg.sender 的 coinBalance
         // your code
-        balance[msg.sender] += value;
+        coinBalance[msg.sender] += value;
 
         // emit MintEvent
         // your code
         emit MintEvent(msg.sender,coinValue,now);
-
     }
 
 	// 使用 bank 中的 ether 向 owner 購買 coin
