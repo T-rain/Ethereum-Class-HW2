@@ -12,5 +12,10 @@ web3.eth.getAccounts().then(function (accounts) {
 
     // get coin balance
     // your code
-
+    bank.methods.getCoinBalance().call({
+        from: accounts[0]
+    }).then((coinBalance) => { 
+        console.log(coinBalance) 
+    })
+    
 })

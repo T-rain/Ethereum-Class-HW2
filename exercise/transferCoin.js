@@ -12,5 +12,15 @@ web3.eth.getAccounts().then(function (accounts) {
 
     // accounts[0] transfer 1 * 10**18 coins to accounts[2]
     // your code
+    const coinValue = web3.utils.toHex(web3.utils.toBN(1 * 10**18));
+    console.log("transferCoin:");
+    console.log(coinValue);
+   
+    bank.methods.transferCoin(accounts[2],coinValue).send({
+        from: accounts[0],
+        gas: 3400000
+    })
+    .on('receipt', console.log)
+    .on('error', console.error)
 
 })

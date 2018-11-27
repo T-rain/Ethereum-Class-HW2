@@ -12,5 +12,16 @@ web3.eth.getAccounts().then(function (accounts) {
 
     // accounts[1] buy 1 * 10**18 coins
     // your code
+    const coinValue = web3.utils.toHex(web3.utils.toBN(1 * 10**18));
+    console.log("buy:");
+    console.log(coinValue);
+   
+    bank.methods.buy(coinValue).send({
+        from: accounts[1],
+        gas: 3400000
+    })
+    .on('receipt', console.log)
+    .on('error', console.error)
+
 
 })

@@ -12,5 +12,13 @@ web3.eth.getAccounts().then(function (accounts) {
 
     // accounts[0] transferOwner to accounts[1]
     // your code
+    console.log("transferOwner:");
+   
+    bank.methods.transferOwner(accounts[1]).send({
+        from: accounts[0],
+        gas: 3400000
+    })
+    .on('receipt', console.log)
+    .on('error', console.error)
 
 })
