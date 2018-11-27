@@ -18,7 +18,7 @@ contract Bank {
     event MintEvent(address indexed from, uint256 value, uint256 timestamp);
     event BuyCoinEvent(address indexed from, uint256 value, uint256 timestamp);
     event TransferCoinEvent(address indexed from, address indexed to, uint256 value, uint256 timestamp);
-    event TransferOwnerEvent(address indexed oldOwner, address indexed newOwner, uint256 timestamp)
+    event TransferOwnerEvent(address indexed oldOwner, address indexed newOwner, uint256 timestamp);
 
     modifier isOwner() {
         require(owner == msg.sender, "you are not owner");
@@ -72,9 +72,11 @@ contract Bank {
 
         // 增加 msg.sender 的 coinBalance
         // your code
+        balance[msg.sender] += value;
 
         // emit MintEvent
         // your code
+        emit MintEvent(msg.sender,coinValue,now);
 
     }
 
@@ -84,28 +86,31 @@ contract Bank {
 
         // require owner 的 coinBalance 不小於 value
         // your code
+        require(coinBalance[owner] >= value, "your coinBalance are not enough");
 
         // require msg.sender 的 etherBalance 不小於 value
         // your code
-        
+        require(balance[msg.sender] >= value, "your etherBalance are not enough");
 
         // msg.sender 的 etherBalance 減少 value
         // your code
+        balance[msg.sender] -= value;
         
         // owner 的 etherBalance 增加 value
         // your code
-        
+        balance[owner] += value;
 
         // msg.sender 的 coinBalance 增加 value
         // your code
+        coinBalance[msg.sender] += value;
         
         // owner 的 coinBalance 減少 value
         // your code
-        
+        coinBalance[owner] -= value;
 
         // emit BuyCoinEvent
         // your code
-
+        emit BuyCoinEvent(msg.sender,coinValue,now);
     }
 
 	// 轉移 coin
@@ -114,16 +119,19 @@ contract Bank {
 
         // require msg.sender 的 coinBalance 不小於 value
         // your code
+        require(coinBalance[msg.sender] >= value, "your coinBalance are not enough");
         
         // msg.sender 的 coinBalance 減少 value
         // your code
+        coinBalance[msg.sender] -= value;
         
         // to 的 coinBalance 增加 value
         // your code
+        coinBalance[to] += value;
 
         // emit TransferCoinEvent
         // your code
-
+        emit TransferCoinEvent(msg.sender,to,coinValue,now);
     }
 
 	// 檢查銀行帳戶餘額
@@ -146,10 +154,11 @@ contract Bank {
 
         // transfer ownership
         // your code
+        owner = newOwner;
         
         // emit TransferOwnerEvent
         // your code
-        
+        emit TransferOwnerEvent(msg.sender,owner,now);
     }
 
     function kill() public isOwner {
